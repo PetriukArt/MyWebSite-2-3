@@ -7,7 +7,7 @@ const mode = process.env.NODE_ENV || 'development';
 const devMode = mode === 'development';
 const target = devMode ? 'web' : 'browserslist';
 const devtool = devMode ? 'source-map' : undefined;
-
+const suffix = devMode ? '' : 'min.';;
 module.exports = {
   mode,
   target,
@@ -21,7 +21,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    filename: 'cls.js',
+    filename: 'cls.'+suffix+'js',
     assetModuleFilename: 'assets/[name][ext]',
   },
   plugins: [
@@ -54,7 +54,7 @@ module.exports = {
       },
     }),
     new MiniCssExtractPlugin({
-      filename: 'style.css',
+      filename: 'style.'+suffix+'css',
     }),
   ],
   module: {
