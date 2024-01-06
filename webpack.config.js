@@ -64,6 +64,20 @@ module.exports = {
         loader: 'html-loader',
       },
       {
+        test: /\.(?:js|mjs|cjs)$/,
+        exclude: {
+          and: [/node_modules/],
+        },
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', { targets: "ie 11" }]
+            ]
+          }
+        }
+      },
+      {
         test: /\.(c|sa|sc)ss$/i,
         use: [
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
